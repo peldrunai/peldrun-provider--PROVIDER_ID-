@@ -1,0 +1,4 @@
+# Runtime dependencies for the PELDRUN provider.
+# IMPORTANT: Version pins MUST align with PELDRUN's own top-level pins 
+# to prevent pip resolver conflicts inside the isolated venv.
+# Add your provider-specific dependencies below (e.g., httpx, openai).

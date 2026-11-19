@@ -1078,4 +1078,8 @@ MIT — see [LICENSE](LICENSE).
 ## References
 
 - [PELDRUN Provider Package Repository — Complete Developer Guide](https://github.com/peldrun/peldrun/blob/main/docs/providers/Provider%20Package%20Repository.md)
+<<<<<<< HEAD
 - [Reference implementation: peldrun-provider-cloudflare-ai](https://github.com/peldrunai/peldrun-provider-cloudflare-ai)
+=======
+- [Reference implementation: peldrun-provider-cloudflare-ai](https://github.com/peldrunai/peldrun-provider-cloudflare-ai)
+>>>>>>> c8832a5e21c447c2d3e949989c9f8bef25041ae9
