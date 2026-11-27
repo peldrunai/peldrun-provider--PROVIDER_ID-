@@ -174,7 +174,7 @@ python scripts/bootstrap_provider.py \
     --author "Your Name" \
     --author-url "https://github.com/yourname" \
     --homepage-url "https://my-provider.example.com" \
-    --brand-color "#F38020" \
+    --brand_color "#F38020" \
     --icon myprovider
 ```
 
@@ -251,7 +251,7 @@ python scripts/bootstrap_provider.py --id <provider-id> [options]
 | `--author-url` | No | `""` | Author profile URL. |
 | `--homepage-url` | No | `""` | Provider homepage URL. |
 | `--icon` | No | snake_case ID | Store icon slug. Must be lowercase. |
-| `--brand-color` | No | `#000000` | Hex brand color, e.g. `#F38020`. |
+| `--brand_color` | No | `#000000` | Hex brand color, e.g. `#F38020`. |
 | `--dry-run` | No | `false` | Preview all changes without writing anything. |
 
 ### 6.3 Naming Derivations
@@ -295,7 +295,7 @@ The bootstrap script replaces the following tokens:
 | `{{AUTHOR_URL}}` | `--author-url` value. |
 | `{{HOMEPAGE_URL}}` | `--homepage-url` value. |
 | `{{ICON_NAME}}` | `--icon` value, or snake_case ID. |
-| `{{BRAND_COLOR}}` | `--brand-color` value. |
+| `{{BRAND_COLOR}}` | `--brand_color` value. |
 | `CHANGE_ME_peldrun` | `<snake>_peldrun` (fixes the stub in `update_version.py`). |
 
 Tokens are replaced **longest-first** to avoid partial collisions (e.g., `{{PROVIDER_ID}}` never corrupts `{{PROVIDER_ID_SNAKE}}`).
@@ -313,19 +313,19 @@ File: `.github/workflows/release.yml` (inside the `Generate catalog entry` step)
 Before:
 
 ```yaml
---brand-color "#000000"
+--brand_color "#000000"
 ```
 
 Normalized to:
 
 ```yaml
---brand-color "{{BRAND_COLOR}}"
+--brand_color "{{BRAND_COLOR}}"
 ```
 
-Then replaced with your `--brand-color` value, e.g.:
+Then replaced with your `--brand_color` value, e.g.:
 
 ```yaml
---brand-color "#F38020"
+--brand_color "#F38020"
 ```
 
 #### Patch 2 — Icon in `release.yml`
@@ -374,7 +374,7 @@ authors = [{ name = "PELDRUN Community" }]
 
 #### Resulting `release.yml` step
 
-After running the bootstrap with `--id cloudflare-ai --brand-color "#F38020" --icon cloudflare`:
+After running the bootstrap with `--id cloudflare-ai --brand_color "#F38020" --icon cloudflare`:
 
 ```yaml
 - name: Generate catalog entry
@@ -383,7 +383,7 @@ After running the bootstrap with `--id cloudflare-ai --brand-color "#F38020" --i
     URL="https://github.com/${{ github.repository }}/releases/download/${{ steps.tag.outputs.tag }}/cloudflare-ai-${VERSION}.zip"
     python scripts/generate_catalog_entry.py \
       --download-url "$URL" \
-      --brand-color "#F38020" \
+      --brand_color "#F38020" \
       --icon cloudflare
 ```
 
@@ -460,7 +460,7 @@ The script is safe to re-run. Files that no longer contain placeholders are left
 Done: 0 file(s) updated, 0 replacement(s), 0 directory rename(s).
 ```
 
-This also holds when a legacy literal normalizes back to the same value (e.g., running with the default `--brand-color "#000000"`).
+This also holds when a legacy literal normalizes back to the same value (e.g., running with the default `--brand_color "#000000"`).
 
 ### 6.9 Exit Codes
 
@@ -750,7 +750,7 @@ Usage:
 ```bash
 python scripts/generate_catalog_entry.py \
     --download-url "https://github.com/<owner>/<repo>/releases/download/v0.1.0/my-provider-0.1.0.zip" \
-    --brand-color "#F38020" \
+    --brand_color "#F38020" \
     --icon myprovider
 ```
 
@@ -862,7 +862,7 @@ python scripts/verify_package.py
 VERSION=$(python -c "import json; print(json.load(open('manifest.json'))['version'])")
 python scripts/generate_catalog_entry.py \
     --download-url "https://github.com/<owner>/<repo>/releases/download/v${VERSION}/my-provider-${VERSION}.zip" \
-    --brand-color "#F38020" \
+    --brand_color "#F38020" \
     --icon myprovider
 
 # 5. Commit and tag

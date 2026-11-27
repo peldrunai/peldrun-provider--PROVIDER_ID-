@@ -15,7 +15,7 @@ Usage:
     python scripts/bootstrap_provider.py --id my-provider \
         --display-name "My Provider AI" \
         --author "Your Name" \
-        --brand-color "#F38020" \
+        --brand_color "#F38020" \
         --icon myprovider
 
     # Preview every change without writing anything:
@@ -83,7 +83,7 @@ HEX_COLOR_RE = re.compile(r"^#[0-9A-Fa-f]{6}$")
 LEGACY_LITERAL_PATCHES: tuple[tuple[str, str, str], ...] = (
     (
         ".github/workflows/release.yml",
-        r'(--brand-color\s+)"#000000"',
+        r'(--brand_color\s+)"#000000"',
         r'\1"{{BRAND_COLOR}}"',
     ),
     (
@@ -290,7 +290,7 @@ def run(args: argparse.Namespace) -> int:
               file=sys.stderr)
         return 1
     if not HEX_COLOR_RE.match(args.brand_color):
-        print(f"[err] --brand-color must be a hex color like '#F38020', got {args.brand_color!r}",
+        print(f"[err] --brand_color must be a hex color like '#F38020', got {args.brand_color!r}",
               file=sys.stderr)
         return 1
     if args.icon and not ID_RE.match(args.icon):
@@ -319,7 +319,7 @@ def run(args: argparse.Namespace) -> int:
     print()
 
     # Normalize old hardcoded template defaults before replacing placeholders.
-    # This makes --brand-color, --icon, and --author work even when the template
+    # This makes --brand_color, --icon, and --author work even when the template
     # still contains literal values such as "#000000", "default", or "Your Name".
     normalized = normalize_legacy_literals(args.dry_run)
     for line in normalized:
@@ -386,7 +386,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--homepage-url", default="", help="Provider homepage URL.")
     parser.add_argument("--icon", default=None,
                         help="Store icon slug. Defaults to the snake_case ID.")
-    parser.add_argument("--brand-color", default="#000000",
+    parser.add_argument("--brand_color", default="#000000",
                         help="Hex brand color, e.g. '#F38020'.")
     parser.add_argument("--dry-run", action="store_true",
                         help="Preview changes without writing anything.")
