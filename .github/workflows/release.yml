@@ -86,7 +86,6 @@ jobs:
             exit 1
           fi
           echo "sha256=$SHA" >> "$GITHUB_OUTPUT"
-
       - name: Generate catalog entry
         run: |
           VERSION=$(python -c "import json; print(json.load(open('manifest.json'))['version'])")
